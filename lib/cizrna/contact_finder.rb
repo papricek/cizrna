@@ -54,6 +54,8 @@ module Cizrna
     end
 
     def extract_json(text)
+      raise ExtractionError, "LLM returned empty response" if text.nil? || text.empty?
+
       # Strip markdown code fences if present
       if text =~ /```(?:json)?\s*\n?(.*?)\n?\s*```/m
         $1.strip
