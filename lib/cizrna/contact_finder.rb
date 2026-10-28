@@ -12,7 +12,7 @@ module Cizrna
 
     def call
       chat = RubyLLM.chat(model: @model)
-        .with_params(tools: [ { google_search: {} } ])
+        .with_provider_options(tools: [ { google_search: {} } ])
       response = chat.ask(prompt)
       JSON.parse(extract_json(response.content))
     rescue JSON::ParserError => e
